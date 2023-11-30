@@ -12,7 +12,6 @@ import { ApiBearerAuth, ApiConsumes } from '@nestjs/swagger';
 import { CreateFolderDto } from './dto/createFolder.dto';
 import { CreateDirectoryDto } from './dto/createDirectory.dto';
 import { ListOfDataDto } from './dto/listData.dto';
-import { CreateFileDto } from './dto/createFile.dto';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { storage } from 'src/helper/multer';
 import { FileUploadDto } from './dto/fileUpload.dto';
@@ -34,13 +33,6 @@ export class FileController {
   createFolder(@Body() dto: CreateFolderDto) {
     return this.fileService.createFolder(dto);
   }
-
-  // @ApiBearerAuth()
-  // @HttpCode(HttpStatus.OK)
-  // @Post('createFile')
-  // createFile(@Body() dto: CreateFileDto) {
-  //   return this.fileService.createFile(dto);
-  // }
 
   @HttpCode(HttpStatus.OK)
   @Post('/createFile')

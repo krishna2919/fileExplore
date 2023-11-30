@@ -35,14 +35,6 @@ async function bootstrap() {
     }),
   });
 
-  // const options = new DocumentBuilder()
-  //   .setTitle('demo')
-  //   .setVersion('1.0')
-  //   .addTag('User')
-  //   .addBearerAuth()
-  //   .build();
-  // const document = SwaggerModule.createDocument(app, options);
-
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
 

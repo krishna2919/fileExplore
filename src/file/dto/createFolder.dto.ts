@@ -4,7 +4,7 @@ import { IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateFolderDto {
   @ApiProperty({
-    example: 'Science city',
+    example: 'Science city folder',
     type: 'string',
     format: 'string',
     required: true,

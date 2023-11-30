@@ -4,3 +4,7 @@ export enum ResponseData {
   SUCCESS = 'Success',
   ERROR = 'Error',
 }
+
+export enum DbCollection {
+  DIRECTORY = 'directory',
+}

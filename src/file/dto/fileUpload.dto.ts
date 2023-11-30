@@ -11,7 +11,7 @@ export class FileUploadDto {
   files: any[];
 
   @ApiProperty({
-    example: 'sdfgfdgdgdfgdfgfdgdfgbfdgd',
+    example: '65686c6c68ea9ba98a222f49',
     type: 'string',
     format: 'string',
     required: true,

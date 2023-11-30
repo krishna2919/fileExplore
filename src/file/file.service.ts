@@ -1,7 +1,7 @@
 import { HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { CreateFolderDto } from './dto/createFolder.dto';
 import { HandleResponse } from 'src/helper/handleResponse';
-import { ResponseData } from 'src/constants/enum';
+import { DbCollection, ResponseData } from 'src/constants/enum';
 import { Messages } from 'src/constants/message';
 import { DbConnection } from 'src/helper/db.connection';
 import { CreateDirectoryDto } from './dto/createDirectory.dto';
@@ -23,12 +23,12 @@ export class FileService {
       };
 
       const db = await this.dbConnection.getDB();
-      const collection = db.collection('directory');
+      const collection = db.collection(DbCollection.DIRECTORY);
       const result: any = await collection.insertOne(obj);
       return HandleResponse(
         HttpStatus.OK,
         ResponseData.SUCCESS,
-        `Created successfully.`,
+        `Directory ${Messages.CREATE_SUCCESS}`,
         result?.insertedId,
         undefined,
       );
@@ -37,7 +37,7 @@ export class FileService {
       return HandleResponse(
         HttpStatus.INTERNAL_SERVER_ERROR,
         ResponseData.ERROR,
-        `${Messages.FAILED_TO} create.`,
+        `${Messages.FAILED_TO} create directory.`,
         undefined,
         undefined,
       );
@@ -53,13 +53,13 @@ export class FileService {
       };
 
       const db = await this.dbConnection.getDB();
-      const collection = db.collection('directory');
+      const collection = db.collection(DbCollection.DIRECTORY);
       const result: any = await collection.insertOne(obj);
 
       return HandleResponse(
         HttpStatus.OK,
         ResponseData.SUCCESS,
-        `Created successfully.`,
+        `Folder ${Messages.CREATE_SUCCESS}`,
         result?.insertedId,
         undefined,
       );
@@ -68,7 +68,7 @@ export class FileService {
       return HandleResponse(
         HttpStatus.INTERNAL_SERVER_ERROR,
         ResponseData.ERROR,
-        `${Messages.FAILED_TO} create.`,
+        `${Messages.FAILED_TO} create folder.`,
         undefined,
         undefined,
       );
@@ -87,13 +87,13 @@ export class FileService {
         parentId,
       };
       const db = await this.dbConnection.getDB();
-      const collection = db.collection('directory');
+      const collection = db.collection(DbCollection.DIRECTORY);
       const result: any = await collection.insertOne(obj);
 
       return HandleResponse(
         HttpStatus.OK,
         ResponseData.SUCCESS,
-        `Created successfully.`,
+        `File ${Messages.CREATE_SUCCESS}`,
         result.insertedId,
         undefined,
       );
@@ -102,7 +102,7 @@ export class FileService {
       return HandleResponse(
         HttpStatus.INTERNAL_SERVER_ERROR,
         ResponseData.ERROR,
-        `${Messages.FAILED_TO} create.`,
+        `${Messages.FAILED_TO} create file.`,
         undefined,
         undefined,
       );
@@ -115,14 +115,14 @@ export class FileService {
         dto.condition['_id'] = new ObjectId(dto.condition['_id']);
       }
       const db = await this.dbConnection.getDB();
-      const collection = db.collection('directory');
+      const collection = db.collection(DbCollection.DIRECTORY);
       const result: any = await collection.find(dto?.condition ?? {});
       const finalResult = await result.toArray();
 
       return HandleResponse(
         HttpStatus.OK,
         ResponseData.SUCCESS,
-        `Created successfully.`,
+        `list data ${Messages.GET_SUCCESS}`,
         finalResult,
         undefined,
       );
@@ -131,7 +131,7 @@ export class FileService {
       return HandleResponse(
         HttpStatus.INTERNAL_SERVER_ERROR,
         ResponseData.ERROR,
-        `${Messages.FAILED_TO} add address.`,
+        `${Messages.FAILED_TO} list successfully.`,
         undefined,
         undefined,
       );
