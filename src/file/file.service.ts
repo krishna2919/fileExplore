@@ -17,6 +17,16 @@ export class FileService {
     try {
       const { directory_Name } = dto;
       const parentId: any = null;
+
+      if (directory_Name === '') {
+        return HandleResponse(
+          HttpStatus.BAD_REQUEST,
+          ResponseData.ERROR,
+          'Empty string is not allowed',
+          undefined,
+          undefined,
+        );
+      }
       const obj: any = {
         directory_Name,
         parentId,
@@ -47,6 +57,16 @@ export class FileService {
   async createFolder(dto: CreateFolderDto) {
     try {
       const { folder_name, parentId } = dto;
+      if (folder_name === '') {
+        return HandleResponse(
+          HttpStatus.BAD_REQUEST,
+          ResponseData.ERROR,
+          'Empty string is not allowed',
+          undefined,
+          undefined,
+        );
+      }
+
       const obj: any = {
         folder_name,
         parentId,
