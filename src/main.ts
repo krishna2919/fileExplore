@@ -34,7 +34,7 @@ async function bootstrap() {
       ],
     }),
   });
-
+  app.enableCors();
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
 
